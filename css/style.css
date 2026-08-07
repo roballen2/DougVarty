@@ -1,32 +1,36 @@
 /* ============================================================
    Doug Varty — design tokens
-   Dark, stage-lit, classic blues-rock. Grounded in real high-contrast
-   stage photography rather than a generic dark-mode default.
+   Minimal editorial: off-white paper, near-black ink, a single
+   mustard accent. Clean typography over stage photography.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-  --stage:        #16140F;   /* near-black, warm — dim bar/stage floor */
-  --stage-deep:   #0E0C09;   /* deepest panels */
-  --stage-raised: #211D16;   /* slightly raised surface (cards) */
-  --paper:        #E8DCC8;   /* warm off-white text — stage-light spill */
-  --muted:        #B6A98F;   /* secondary text */
-  --amber:        #C77C3C;   /* spotlight gel — primary accent */
-  --amber-deep:   #9E5F28;
+  --stage:        #F6F4EF;   /* off-white page background */
+  --stage-deep:   #EFEBE2;   /* header / footer panels */
+  --stage-raised: #EFEBE2;   /* slightly raised surface (cards) */
+  --paper:        #1B1912;   /* near-black ink */
+  --muted:        #6E6A5C;   /* secondary text */
+  --amber:        #8A6D3B;   /* mustard — primary accent */
+  --amber-deep:   #6E5730;
+  --amber-light:  #A9855A;   /* hover state */
   --brick:        #8B1E1E;   /* rare emphasis */
-  --hairline:     #3A352B;
+  --hairline:     #DCD6C6;
   --white:        #FFFFFF;
+
+  /* Hero text always sits on a dark photo scrim, regardless of theme */
+  --hero-ink:     #F1EAD9;
 
   /* Beatles in Blue project accent (used only within that page) */
   --bib-navy:     #2B3A52;
   --bib-navy-deep:#1C2738;
 
-  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-display: 'Inter', -apple-system, sans-serif;
   --font-body:    'Inter', -apple-system, sans-serif;
 
   --max-width: 1180px;
-  --radius: 4px;
+  --radius: 2px;
 }
 
 * { box-sizing: border-box; }
@@ -47,22 +51,21 @@ img { max-width: 100%; display: block; }
 a {
   color: var(--amber);
   text-decoration: underline;
-  text-decoration-color: rgba(199, 124, 60, 0.4);
+  text-decoration-color: rgba(138, 109, 59, 0.4);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 2px;
 }
-a:hover { color: #DDA15E; text-decoration-color: currentColor; }
+a:hover { color: var(--amber-light); text-decoration-color: currentColor; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   margin: 0 0 0.5em;
   color: var(--paper);
 }
-h1 { font-weight: 700; letter-spacing: 0.005em; }
 
 p { margin: 0 0 1.1em; color: var(--paper); }
 
@@ -118,8 +121,8 @@ p { margin: 0 0 1.1em; color: var(--paper); }
 .main-nav a {
   font-family: var(--font-display);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: normal;
   text-decoration: none;
   color: var(--muted);
   font-size: 0.85rem;
@@ -200,13 +203,14 @@ p { margin: 0 0 1.1em; color: var(--paper); }
 .hero h1 {
   font-size: clamp(3rem, 9vw, 6.5rem);
   margin-bottom: 14px;
+  color: var(--hero-ink);
   text-shadow: 0 4px 30px rgba(0,0,0,0.6);
 }
 
 .hero p.lede {
   font-size: 1.2rem;
   max-width: 560px;
-  color: var(--paper);
+  color: var(--hero-ink);
   margin-bottom: 32px;
 }
 
@@ -216,8 +220,8 @@ p { margin: 0 0 1.1em; color: var(--paper); }
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   font-size: 0.92rem;
   text-decoration: none;
   padding: 14px 28px;
@@ -227,12 +231,19 @@ p { margin: 0 0 1.1em; color: var(--paper); }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn--primary { background: var(--amber); color: var(--stage); }
-.btn--primary:hover { background: #DDA15E; border-color: #DDA15E; }
+.btn--primary:hover { background: var(--amber-light); border-color: var(--amber-light); }
 .btn--ghost { background: transparent; color: var(--paper); border-color: var(--hairline); }
 .btn--ghost:hover { border-color: var(--amber); color: var(--amber); }
+.hero .btn--ghost { color: var(--hero-ink); border-color: rgba(241,234,217,0.35); }
+.hero .btn--ghost:hover { border-color: var(--amber); color: var(--amber); }
 
 @media (max-width: 700px) {
   .hero { min-height: 70vh; }
+}
+
+.hero--page { min-height: 48vh; }
+@media (max-width: 700px) {
+  .hero--page { min-height: 38vh; }
 }
 
 /* ============================================================
