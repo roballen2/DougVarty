@@ -381,6 +381,7 @@ body.theme-bib .section--raised { background: #1A2230; border-color: #2B3A52; }
 .page-header .meta { color: var(--muted); font-size: 0.95rem; }
 
 .prose { max-width: 760px; margin: 0 auto; padding: 52px 24px 80px; }
+.prose--wide { max-width: 980px; }
 .prose img { border-radius: var(--radius); margin: 8px auto 24px; max-height: 540px; width: auto; max-width: 100%; object-fit: contain; }
 .prose figure { margin: 8px 0 28px; }
 .prose figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; text-align: center; font-style: italic; }
