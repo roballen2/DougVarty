@@ -403,3 +403,21 @@ body.theme-bib .section--raised { background: #1A2230; border-color: #2B3A52; }
   border: 1px solid var(--hairline); border-radius: var(--radius); padding: 8px 16px; text-decoration: none; color: var(--paper);
 }
 .member-links a:hover { border-color: var(--amber); color: var(--amber); }
+
+.social-icons { display: flex; flex-direction: row; gap: 18px; align-items: center; margin: 24px 0; }
+.social-icons a { display: inline-flex; color: var(--muted); text-decoration: none; }
+.social-icons a:hover { color: var(--amber); }
+.social-icons svg { width: 50px; height: 50px; }
+
+.social-icons--footer { justify-content: center; margin: 32px auto 0; }
+.social-icons--footer svg { width: 28px; height: 28px; }
+
+.contact-lede {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-size: 25.5px;
+  margin: 0 0 0.5em;
+  color: var(--paper);
+}
