@@ -80,5 +80,48 @@
     <span><a href="mailto:info@dougvarty.com">info@dougvarty.com</a></span>
   </div>
 </footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <button type="button" class="lightbox__btn lightbox__close" aria-label="Close photo">&times;</button>
+  <button type="button" class="lightbox__btn lightbox__nav lightbox__nav--prev" aria-label="Previous photo">&#8249;</button>
+  <img class="lightbox__img" src="" alt="">
+  <button type="button" class="lightbox__btn lightbox__nav lightbox__nav--next" aria-label="Next photo">&#8250;</button>
+</dialog>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.gallery-grid a'));
+  var box = document.getElementById('lightbox');
+  if (!box || !links.length || typeof box.showModal !== 'function') { return; }
+  var img = box.querySelector('.lightbox__img');
+  var current = 0;
+
+  function show(i) {
+    current = (i + links.length) % links.length;
+    img.src = links[current].getAttribute('href');
+  }
+
+  links.forEach(function (a, i) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      show(i);
+      box.showModal();
+    });
+  });
+
+  box.querySelector('.lightbox__close').addEventListener('click', function () { box.close(); });
+  box.querySelector('.lightbox__nav--prev').addEventListener('click', function () { show(current - 1); });
+  box.querySelector('.lightbox__nav--next').addEventListener('click', function () { show(current + 1); });
+
+  // Clicking the dark area around the photo closes the viewer
+  box.addEventListener('click', function (e) { if (e.target === box) { box.close(); } });
+
+  box.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { show(current - 1); }
+    if (e.key === 'ArrowRight') { show(current + 1); }
+  });
+
+  box.addEventListener('close', function () { img.removeAttribute('src'); });
+})();
+</script>
 </body>
 </html>
